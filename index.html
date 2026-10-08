@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <title>Ian Berges — Emergency ID</title>
+  <meta name="description" content="Emergency identification page for Ian Berges. Peanut allergy alert and emergency contacts.">
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #101828;
+      --muted: #667085;
+      --accent: #155eef;
+      --accent-dark: #004eeb;
+      --danger: #b42318;
+      --danger-bg: #fff1f0;
+      --border: #e4e7ec;
+      --green: #087443;
+      --green-bg: #ecfdf3;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .topbar {
+      background: #0b1220;
+      color: white;
+      text-align: center;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    main {
+      width: min(680px, 100%);
+      margin: 0 auto;
+      padding: 22px 16px 42px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 18px 8px 20px;
+    }
+
+    .shield {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 14px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: #eaf1ff;
+      font-size: 38px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 9vw, 52px);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      margin-top: 14px;
+      box-shadow: 0 8px 30px rgba(16, 24, 40, .06);
+    }
+
+    .allergy {
+      background: var(--danger-bg);
+      border: 2px solid #fecdca;
+      color: var(--danger);
+    }
+
+    .allergy .label {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .allergy strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.15;
+    }
+
+    .allergy p {
+      margin: 8px 0 0;
+      color: #7a271a;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-box {
+      padding: 14px;
+      background: #f8fafc;
+      border-radius: 16px;
+    }
+
+    .info-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+
+    .info-box strong {
+      font-size: 16px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+
+    .contact {
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact:first-of-type { border-top: 0; padding-top: 0; }
+
+    .contact-name {
+      font-weight: 800;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .phone {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+    }
+
+    .btn.call {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .btn.whatsapp {
+      background: var(--green-bg);
+      border-color: #abefc6;
+      color: var(--green);
+    }
+
+    .btn.sms {
+      background: #f8fafc;
+    }
+
+    .found {
+      margin-top: 16px;
+      padding: 20px;
+      border-radius: 20px;
+      background: #0b1220;
+      color: white;
+      text-align: center;
+    }
+
+    .found h2 {
+      margin: 0 0 7px;
+      font-size: 23px;
+    }
+
+    .found p {
+      margin: 0 0 16px;
+      color: #d0d5dd;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .found-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .found-btn {
+      min-height: 50px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 800;
+      background: white;
+      color: #0b1220;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 10px 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 430px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .actions { grid-template-columns: 1fr; }
+      .found-actions { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Emergency Identification</div>
+
+  <main>
+    <section class="hero">
+      <div class="shield">🛡️</div>
+      <h1>Ian Berges</h1>
+      <p class="subtitle">Emergency ID • New Hampshire, USA</p>
+    </section>
+
+    <section class="card allergy" aria-label="Peanut allergy alert">
+      <div class="label">⚠️ Allergy Alert</div>
+      <strong>Ian is allergic to peanuts.</strong>
+      <p>Please do not give Ian food containing peanuts or peanut ingredients. If you believe he has been exposed and is having a severe allergic reaction, call 911 immediately.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Personal Information</h2>
+      <div class="info-grid">
+        <div class="info-box">
+          <span>Name</span>
+          <strong>Ian Berges</strong>
+        </div>
+        <div class="info-box">
+          <span>Date of Birth</span>
+          <strong>April 22, 2020</strong>
+        </div>
+        <div class="info-box">
+          <span>Location</span>
+          <strong>New Hampshire, USA</strong>
+        </div>
+        <div class="info-box">
+          <span>Emergency</span>
+          <strong>Call 911 if needed</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Emergency Contacts</h2>
+
+      <div class="contact">
+        <div class="contact-name">Emergency Contact 1</div>
+        <div class="phone">+1 (603) 507-5526</div>
+        <div class="actions">
+          <a class="btn call" href="tel:+16035075526">📞 Call</a>
+          <a class="btn whatsapp" target="_blank" rel="noopener" href="https://wa.me/16035075526?text=Hello%2C%20I%20found%20Ian%20Berges.%20I%20am%20contacting%20you%20because%20I%20found%20him.%20Please%20let%20me%20know%20how%20I%20can%20help%20reunite%20him%20with%20his%20family.">💬 WhatsApp</a>
+          <a class="btn sms" href="sms:+16035075526?body=Hello%2C%20I%20found%20Ian%20Berges.%20I%20am%20contacting%20you%20because%20I%20found%20him.%20Please%20let%20me%20know%20how%20I%20can%20help%20reunite%20him%20with%20his%20family.">✉️ Text</a>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="contact-name">Emergency Contact 2</div>
+        <div class="phone">+1 (603) 507-5527</div>
+        <div class="actions">
+          <a class="btn call" href="tel:+16035075527">📞 Call</a>
+          <a class="btn whatsapp" target="_blank" rel="noopener" href="https://wa.me/16035075527?text=Hello%2C%20I%20found%20Ian%20Berges.%20I%20am%20contacting%20you%20because%20I%20found%20him.%20Please%20let%20me%20know%20how%20I%20can%20help%20reunite%20him%20with%20his%20family.">💬 WhatsApp</a>
+          <a class="btn sms" href="sms:+16035075527?body=Hello%2C%20I%20found%20Ian%20Berges.%20I%20am%20contacting%20you%20because%20I%20found%20him.%20Please%20let%20me%20know%20how%20I%20can%20help%20reunite%20him%20with%20his%20family.">✉️ Text</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="found">
+      <h2>Did you find Ian?</h2>
+      <p>Please contact his family immediately. Calling is the fastest option; WhatsApp and text are also available.</p>
+      <div class="found-actions">
+        <a class="found-btn" href="tel:+16035075526">📞 Call Family</a>
+        <a class="found-btn" href="sms:+16035075526?body=Hello%2C%20I%20found%20Ian%20Berges.%20Please%20contact%20me.%20I%20would%20like%20to%20help%20reunite%20him%20with%20his%20family.">✉️ I Found Ian</a>
+      </div>
+    </section>
+
+    <footer>
+      This page is intended to help identify Ian and contact his family in an emergency.
+      If Ian is in immediate danger or needs urgent medical assistance, call <strong>911</strong>.
+    </footer>
+  </main>
+</body>
+</html>
